@@ -2,7 +2,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 @import "font-awesome/scss/font-awesome.scss";
-
 // endbower
 
 .browsehappy {
@@ -44,7 +43,6 @@ body {
   .logo{
     color: #FF5A5F;
   }
-
 }
 
 /* Custom page footer */
@@ -142,7 +140,7 @@ body {
 
 .row-prix-annonces{
   font-size: 18px;
-  color: #484848;
+  color: #FF5A5F;
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
 }
 
@@ -196,4 +194,21 @@ body {
 
 .pagination > li > a, .pagination > li > span {
   color: #00A598;
+}
+
+.plus-filtres-button{
+  i{
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+  }  
+}
+
+.nouveau-alert-annonces{
+  .alert{
+    padding: 5px;
+    width: 80px;
+    border-color: #008489;
+    background-color: #008489;
+    color: white;
+    margin-top: 10px;
+  }
 }

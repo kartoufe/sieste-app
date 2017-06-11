@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 angular.module('siesteAppApp').filter('reverse', function() {
     return function(input, max) {
       var out = input;
@@ -13,7 +11,6 @@ angular.module('siesteAppApp').filter('reverse', function() {
       return out;
     };
 });
-
 
 /**
  * @ngdoc function
@@ -51,25 +48,76 @@ angular.module('siesteAppApp')
 	    startingDay: 1
 	};
 
-  	$scope.popup1 = {
+  	$scope.popupDateDebut = {
 		opened: false
 	};
 
-	$scope.popup2 = {
+	$scope.popupDateFin = {
 		opened: false
 	};
 
-  	$scope.open1 = function() {
-	    $scope.popup1.opened = true;
+  	$scope.openDateDebut = function() {
+	    $scope.popupDateDebut.opened = true;
     };
 
-	$scope.open2 = function() {
-		$scope.popup2.opened = true;
+	$scope.openDateFin = function() {
+		$scope.popupDateFin.opened = true;
 	};
 
 
-    $scope.movies = [
+    $scope.annoncesList = [
     	{
+    		id: 3, 
+    		title: 'Espace partagé, Shared space', 
+    		periode: 'Tout 2017', 
+    		vote_average: 1000, 
+    		vote_count: 35,
+    		note: 5,
+    		prix: 75,
+    		unite_prix: "mois",
+    		avec_cuisine: true,
+    		avec_machine_cafe: true,
+    		avec_tv: true,
+    		avec_wifi: true,
+    		avec_console_jeux_video: true,
+    		is_nouveau: true,
+    		images: [
+    			{
+    				id: 0,
+    				path_image: 'https://a0.muscache.com/im/pictures/f96b668f-17f9-4f18-8026-e28344f66e06.jpg?aki_policy=xx_large'
+    			},{
+    				id: 2,
+    				path_image: 'https://a0.muscache.com/im/pictures/be1610d2-7e3d-49db-ba08-04b9a56ff843.jpg?aki_policy=x_large'
+    			},{
+    				id: 1,
+    				path_image: 'https://a0.muscache.com/im/pictures/c30dfc91-9dc1-491d-a441-48cc2b2797fc.jpg?aki_policy=x_large'
+    			}
+    		]
+    	},{
+    		id: 4, 
+    		title: 'Cosy studio porte de Montmartre', 
+    		periode: 'Tout 2017', 
+    		vote_average: 1000, 
+    		vote_count: 35,
+    		note: 5,
+    		prix: 60,
+    		unite_prix: "mois",
+    		avec_cuisine: true,
+    		avec_machine_cafe: true,
+    		avec_tv: true,
+    		avec_wifi: true,
+    		avec_console_jeux_video: false,
+    		is_nouveau: false,
+    		images: [
+    			{
+    				id: 0,
+    				path_image: 'https://a0.muscache.com/im/pictures/030eaa9b-14cc-433f-83e8-2014219fb555.jpg?aki_policy=x_large'
+    			},{
+    				id: 2,
+    				path_image: 'https://a0.muscache.com/im/pictures/e42aa54e-5d23-4c5f-a5f3-6f59cf91be02.jpg?aki_policy=x_large'
+    			}
+    		]
+    	},{
     		id: 1, 
     		title: 'Chambre 30m2 proche Paris, & marché aux Puces', 
     		periode: 'Entre le 2017-01-01 et 2017-09-29', 
@@ -83,6 +131,7 @@ angular.module('siesteAppApp')
     		avec_tv: false,
     		avec_wifi: true,
     		avec_console_jeux_video: false,
+    		is_nouveau: false,
     		images: [
     			{
     				id: 0,
@@ -107,6 +156,7 @@ angular.module('siesteAppApp')
     		avec_tv: true,
     		avec_wifi: false,
     		avec_console_jeux_video: false,
+    		is_nouveau: true,
     		images: [
     			{
     				id: 0,
@@ -119,58 +169,6 @@ angular.module('siesteAppApp')
     				path_image: 'https://a0.muscache.com/im/pictures/c290b61a-13af-4927-8f60-f37bf4284d66.jpg?aki_policy=x_large'
     			}
     		]
-    		
-    	},{
-    		id: 3, 
-    		title: 'Espace partagé, Shared space', 
-    		periode: 'Tout 2017', 
-    		vote_average: 1000, 
-    		vote_count: 35,
-    		note: 5,
-    		prix: 75,
-    		unite_prix: "mois",
-    		avec_cuisine: true,
-    		avec_machine_cafe: true,
-    		avec_tv: true,
-    		avec_wifi: true,
-    		avec_console_jeux_video: true,
-    		images: [
-    			{
-    				id: 0,
-    				path_image: 'https://a0.muscache.com/im/pictures/f96b668f-17f9-4f18-8026-e28344f66e06.jpg?aki_policy=xx_large'
-    			},{
-    				id: 2,
-    				path_image: 'https://a0.muscache.com/im/pictures/be1610d2-7e3d-49db-ba08-04b9a56ff843.jpg?aki_policy=x_large'
-    			},{
-    				id: 1,
-    				path_image: 'https://a0.muscache.com/im/pictures/c30dfc91-9dc1-491d-a441-48cc2b2797fc.jpg?aki_policy=x_large'
-    			}
-    		]
-    		
-    	},{
-    		id: 4, 
-    		title: 'Cosy studio porte de Montmartre', 
-    		periode: 'Tout 2017', 
-    		vote_average: 1000, 
-    		vote_count: 35,
-    		note: 5,
-    		prix: 60,
-    		unite_prix: "mois",
-    		avec_cuisine: true,
-    		avec_machine_cafe: true,
-    		avec_tv: true,
-    		avec_wifi: true,
-    		avec_console_jeux_video: false,
-    		images: [
-    			{
-    				id: 0,
-    				path_image: 'https://a0.muscache.com/im/pictures/030eaa9b-14cc-433f-83e8-2014219fb555.jpg?aki_policy=x_large'
-    			},{
-    				id: 2,
-    				path_image: 'https://a0.muscache.com/im/pictures/e42aa54e-5d23-4c5f-a5f3-6f59cf91be02.jpg?aki_policy=x_large'
-    			}
-    		]
-    		
     	}
 	];
 

@@ -18,13 +18,13 @@
 				type="text" 
 				class="form-control" 
 				uib-datepicker-popup="yyyy/MM/dd" 
-				ng-model="dt1" 
-				is-open="popup1.opened" 
+				ng-model="dateDebut" 
+				is-open="popupDateDebut.opened" 
 				datepicker-options="dateOptions" 
 				ng-required="true" 
 				close-text="Close" 
 				alt-input-formats="alt-input-formatsput-formatsputFormats" 
-				ng-click="open1()"
+				ng-click="openDateDebut()"
 			/>			
 
 			<span class="input-group-addon input-group-addon-centre">
@@ -36,15 +36,15 @@
 				type="text" 
 				class="form-control" 
 				uib-datepicker-popup 
-				is-open="popup2.opened" 
+				is-open="popupDateFin.opened" 
 				datepicker-options="dateOptions" 
 				ng-required="true" 
 				close-text="Close" 
-				ng-model="dt2"
-				ng-click="open2()" 
+				ng-model="dateFin"
+				ng-click="openDateFin()" 
 			/>
 
-			<span class="input-group-addon">
+			<span class="input-group-addon plus-filtres-button">
 				<i class="fa fa-filter" aria-hidden="true"> Plus de filtres</i>
 			</span>
 
@@ -54,14 +54,14 @@
 </div>
 
 
-<div class="movies-container" id="top">
-    <ul class="movies">
-        <li ng-repeat="movie in movies" class="li-annonces">
+<div class="annonces-container" id="top">
+    <ul class="annonces">
+        <li ng-repeat="annonce in annoncesList" class="li-annonces">
             <div class="row" class="row-annonces">
 
             	<div class="col-md-5">
 				    <div uib-carousel active="0" interval="myInterval" no-wrap="noWrapSlides">
-				      <div uib-slide ng-repeat="image in movie.images track by image.id" index="image.id">
+				      <div uib-slide ng-repeat="image in annonce.images track by image.id" index="image.id">
 				        <img ng-src="{{image.path_image}}" class="carousel-image-annonces"> 
 				      </div>
 				    </div>
@@ -70,37 +70,53 @@
 
                 <div class="col-md-7">
 
-                    <a ng-href="#/info/{{movie.id}}"><h4 ng-bind="movie.title | reverse: 38" class="title_annonces"></h4></a>
+                    <a ng-href="#/info/{{annonce.id}}"><h4 ng-bind="annonce.title | reverse: 38" class="title_annonces"></h4></a>
 
 					<div class="row">
                         <label class="col-md-10 row-prix-annonces">
-                        	<span class="prix-annonces">{{movie.prix}}</span>
+                        	<span class="prix-annonces">{{annonce.prix}}</span>
                         	<i class="fa fa-eur"></i>
-                        	<span class="unite-prix-annonces"> / par {{movie.unite_prix}}</span>
+                        	<span class="unite-prix-annonces"> / par {{annonce.unite_prix}}</span>
                     	</label>
                     </div>
 
                     <div class="row periode-annonces">
-                        <span class="col-md-10" ng-bind="movie.periode"></span>
+                        <span class="col-md-10" ng-bind="annonce.periode"></span>
                     </div>
 
                     <div class="row note-annonces">
                         <div class="col-md-10">
-                           <span uib-rating ng-model="movie.note" max="7" read-only="true" aria-labelledby="default-rating" class="rating-note"></span>
-                           <span class="commentaire-annonces"><span ng-bind="movie.vote_count"></span> commentaires</span>
+                           <span uib-rating ng-model="annonce.note" max="7" read-only="true" aria-labelledby="default-rating" class="rating-note"></span>
+                           <span class="commentaire-annonces"><span ng-bind="annonce.vote_count"></span> commentaires </span>
                         </div>
                     </div>
 
                     <div class="row option-annonces">
                         <label class="col-md-10">
-                        	<i class="fa fa-bed"> </i>
-                        	<i class="fa fa-cutlery" ng-hide="!movie.avec_cuisine"></i>
-                        	<i class="fa fa-coffee" ng-hide="!movie.avec_machine_cafe"></i>
-                        	<i class="fa fa-desktop" ng-hide="!movie.avec_tv"></i>
-                        	<i class="fa fa-wifi" ng-hide="!movie.avec_wifi"></i>
-                        	<i class="fa fa-gamepad" ng-hide="!movie.avec_console_jeux_video"></i>
+
+                        	<i class="fa fa-bed" data-toggle="tooltip" data-placement="bottom" title="Drap et housse"> </i>
+
+                        	<i class="fa fa-cutlery" ng-hide="!annonce.avec_cuisine" data-toggle="tooltip" data-placement="bottom" title="Cuisine"></i>
+
+                        	<i class="fa fa-coffee" ng-hide="!annonce.avec_machine_cafe" data-toggle="tooltip" data-placement="bottom" title="Machine à café"></i>
+
+                        	<i class="fa fa-desktop" ng-hide="!annonce.avec_tv" data-toggle="tooltip" data-placement="bottom" title="Télévision"></i>
+
+                        	<i class="fa fa-wifi" ng-hide="!annonce.avec_wifi" data-toggle="tooltip" data-placement="bottom" title="Wifi"></i>
+
+                        	<i class="fa fa-gamepad" ng-hide="!annonce.avec_console_jeux_video" data-toggle="tooltip" data-placement="bottom" title="Jeux video et consoles"></i>
+
                     	</label>
                     </div> 
+
+					<div class="row nouveau-alert-annonces" ng-hide="!annonce.is_nouveau">
+						<div class="col-md-10">
+		                    <div class="alert" role="alert">
+							 	NOUVEAU
+							</div>
+						</div>
+					</div>
+
                 </div>
 
             </div>
