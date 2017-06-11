@@ -1,0 +1,116 @@
+<div class="filtre-container">
+
+	<div class="row">
+		<p class="input-group col-md-12" >
+
+			<span class="input-group-addon">
+				<i class="fa fa-map-marker" aria-hidden="true"></i>
+			</span>
+
+			<input type="text" class="form-control" placeholder="Paris">
+
+			<span class="input-group-addon input-group-addon-centre">
+				<i class="fa fa-calendar-o" aria-hidden="true"> </i>
+			</span>
+
+			<input 
+				placeholder="Date début"
+				type="text" 
+				class="form-control" 
+				uib-datepicker-popup="yyyy/MM/dd" 
+				ng-model="dt1" 
+				is-open="popup1.opened" 
+				datepicker-options="dateOptions" 
+				ng-required="true" 
+				close-text="Close" 
+				alt-input-formats="alt-input-formatsput-formatsputFormats" 
+				ng-click="open1()"
+			/>			
+
+			<span class="input-group-addon input-group-addon-centre">
+				<i class="fa fa-calendar-o" aria-hidden="true"></i>
+			</span>
+
+			<input 
+				placeholder="Date fin"
+				type="text" 
+				class="form-control" 
+				uib-datepicker-popup 
+				is-open="popup2.opened" 
+				datepicker-options="dateOptions" 
+				ng-required="true" 
+				close-text="Close" 
+				ng-model="dt2"
+				ng-click="open2()" 
+			/>
+
+			<span class="input-group-addon">
+				<i class="fa fa-filter" aria-hidden="true"> Plus de filtres</i>
+			</span>
+
+		</p>
+	</div>
+ 
+</div>
+
+
+<div class="movies-container" id="top">
+    <ul class="movies">
+        <li ng-repeat="movie in movies" class="li-annonces">
+            <div class="row" class="row-annonces">
+
+            	<div class="col-md-5">
+				    <div uib-carousel active="0" interval="myInterval" no-wrap="noWrapSlides">
+				      <div uib-slide ng-repeat="image in movie.images track by image.id" index="image.id">
+				        <img ng-src="{{image.path_image}}" class="carousel-image-annonces"> 
+				      </div>
+				    </div>
+				</div>
+
+
+                <div class="col-md-7">
+
+                    <a ng-href="#/info/{{movie.id}}"><h4 ng-bind="movie.title | reverse: 38" class="title_annonces"></h4></a>
+
+					<div class="row">
+                        <label class="col-md-10 row-prix-annonces">
+                        	<span class="prix-annonces">{{movie.prix}}</span>
+                        	<i class="fa fa-eur"></i>
+                        	<span class="unite-prix-annonces"> / par {{movie.unite_prix}}</span>
+                    	</label>
+                    </div>
+
+                    <div class="row periode-annonces">
+                        <span class="col-md-10" ng-bind="movie.periode"></span>
+                    </div>
+
+                    <div class="row note-annonces">
+                        <div class="col-md-10">
+                           <span uib-rating ng-model="movie.note" max="7" read-only="true" aria-labelledby="default-rating" class="rating-note"></span>
+                           <span class="commentaire-annonces"><span ng-bind="movie.vote_count"></span> commentaires</span>
+                        </div>
+                    </div>
+
+                    <div class="row option-annonces">
+                        <label class="col-md-10">
+                        	<i class="fa fa-bed"> </i>
+                        	<i class="fa fa-cutlery" ng-hide="!movie.avec_cuisine"></i>
+                        	<i class="fa fa-coffee" ng-hide="!movie.avec_machine_cafe"></i>
+                        	<i class="fa fa-desktop" ng-hide="!movie.avec_tv"></i>
+                        	<i class="fa fa-wifi" ng-hide="!movie.avec_wifi"></i>
+                        	<i class="fa fa-gamepad" ng-hide="!movie.avec_console_jeux_video"></i>
+                    	</label>
+                    </div> 
+                </div>
+
+            </div>
+        </li>
+    </ul>
+
+    <div class="row">
+	    <div class="col-md-12 pagination-annonces">
+	        <ul uib-pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+		</div>
+    </div>
+
+</div>
